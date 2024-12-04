@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+"""Test plot a 3D scalar field."""
+
 import numpy as np
 import matplotlib.pyplot as plt
 from utils import *

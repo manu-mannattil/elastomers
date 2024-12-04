@@ -17,14 +17,16 @@ x = np.linspace(-L, L, n)
 X, Y = np.meshgrid(x, x)
 pfm = PhaseFieldModel(a=-1,
                       b=1,
-                      kappa=0.001,
-                      phi_s=0.5,
-                      phi_c=0.0,
+                      T=1,
+                      T_c=0,
                       M=0.0,
+                      phi_c=0.0,
+                      phi_0=0.0,
+                      kappa=0.001,
+                      dt=0.001,
                       d=2,
                       n=n,
-                      L=L,
-                      energy=True)
+                      L=2)
 
 fig, ax = plt.subplots()
 im = ax.pcolormesh(X, Y, rescale(pfm.psi), cmap="RdBu")
@@ -36,7 +38,6 @@ ax.set_title(r"Cahn-Hilliard evolution")
 def animate(i):
     pfm.evolve()
     im.set_array(rescale(pfm.psi))
-    print(f"step = {i}; energy = {pfm.E}")
     return [im]
 
 ani = FuncAnimation(fig, animate, frames=1, interval=1, blit=True)
