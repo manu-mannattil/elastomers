@@ -8,3 +8,8 @@ __pycache__/
 *.jpeg
 *.jpg
 *.txt
+*.npy
+*.pdf_tex
+*.svg
+
+data/
