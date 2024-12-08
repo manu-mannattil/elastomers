@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Plot the 3D elastomer morphologies"""
+"""Plot the 3D elastomer morphologies."""
 
 import numpy as np
 import matplotlib.pyplot as plt

@@ -16,10 +16,40 @@ class PhaseFieldModel:
                  h=0.5,
                  d=2,
                  n=128,
-                 L=10,
+                 L=5,
                  dt=1,
-                 disorder=0.1,
-                 energy=True):
+                 disorder=0.1):
+        """Phase-field model for elastic microphase separation.
+
+        Parameters
+        ----------
+        T : float
+            Temperature (in Celsius).
+        T_c : float
+            Critical temperature (in Celsius).
+        phi_c : float
+            Critical polymer volume fraction.
+        a : float
+            Landau parameter a (in kPa).
+        b : float
+            Landau parameter b (in kPa).
+        kappa : float
+            Interfacial parameter (in kPa μm^2).
+        M : float
+            Rescaled longitudinal modulus (in kPa)
+        h : float
+            Coarse-graining length (in μm).
+        d : int
+            Dimension of box used for energy minimization.
+        n : int
+            Number of grid points along each axis of the box.
+        L : float
+            side length of the box (in μm)
+        dt : float
+            time step
+        disorder: float
+            Controls the randomness in the initial configuration.
+        """
         if d not in (2, 3):
             raise ValueError(f"The dimension (d = {d}) must be 2 or 3.")
 
@@ -62,6 +92,7 @@ class PhaseFieldModel:
         self.C = 1 + dt * q2 * (kappa*q2 - 2 * a * (T-T_c) + M*K_q)
 
     def evolve(self):
+        """Evolves the energy-minimization equation in time."""
         psi_q = np.fft.fftn(self.psi)
         psi3_q = np.fft.fftn(self.psi**3)
 
