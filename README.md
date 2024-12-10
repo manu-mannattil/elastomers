@@ -1,6 +1,7 @@
 # Theory of Microphase Separation in Elastomers
 
-<!-- [![arXiv](https://shields.io/badge/arXiv-2306.07213-b31b1b)](https://arxiv.org/abs/2306.07213) -->
+[![arXiv](https://shields.io/badge/arXiv-2412.05910-b31b1b)](https://arxiv.org/abs/2412.05910)
+
 <!-- [![DOI](https://shields.io/badge/DOI-10.1103/PhysRevE.109.035001-946037)](https://doi.org/10.1103/PhysRevE.109.035001) -->
 
 ## Usage
@@ -20,8 +21,8 @@ microphase separation in an elastomer swollen with a solvent.  The
 imbalance between the molecular scale of demixing and the mesoscopic
 scale beyond which elasticity operates produces effective long-range
 interactions, forming stable finite-sized domains.  Our predictions
-concerning the dependence the domain size and transition temperature on
-the stiffness of the elastomer are in good agreement with the
+concerning the dependence of the domain size and transition temperature
+on the stiffness of the elastomer are in good agreement with the
 experiments.  Analytical phase diagrams, aided by numerical findings,
 capture the richness of the microphase morphologies, paving the way to
 create stable, patterned elastomers for various applications.
