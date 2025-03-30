@@ -18,6 +18,10 @@ construction.  The basic algorithm is as follows:
    temperature.
 
 4. For a new temperature, start with Step 1.
+
+This program reproduces a phase diagram similar to Fig. 10 of Thiele et
+al., Phys. Rev. E 87, 042915 (2013) and Fig. 4 of Elder and Grant, Phys.
+Rev. E 70, 051605 (2004).
 """
 
 import numpy as np
@@ -28,7 +32,7 @@ from params import parameters
 T_c = 0
 phi_c = 0
 kappa, h, M = 1, 1, np.e
-zeta = M*h**2/kappa
+zeta = M * h**2 / kappa
 
 # This term appears in the minimized free energies.
 Q = kappa / h**2 * (1 + np.log(zeta))
@@ -50,7 +54,7 @@ def F(x, adT):
     return adT + 3 * b * x**2 + Q
 
 def f_unif(x, adT):
-    return 0.5 * (adT + M) * x**2 + 0.25 * b * x**4
+    return 0.5 * (adT+M) * x**2 + 0.25 * b * x**4
 
 def f_hex(x, adT):
     A = 4 / (15*b) * (3*b*x + np.sqrt(9 * b**2 * x**2 - 15 * b * F(x, adT)))
@@ -179,22 +183,22 @@ with plt.rc_context(rc):
 
     # Mark points on the phase diagram.
     T_mark = -2.5
-    res3 = hex_stripe(a*(T_mark - T_c))
-    res4 = hex_unif(a*(T_mark - T_c))
-    psi_mark = [0, 0.5*(res3[1] + res3[2]), 0.5*(res3[1] + res4[1]), 0.5*(res4[1] + res4[2])]
+    res3 = hex_stripe(a * (T_mark-T_c))
+    res4 = hex_unif(a * (T_mark-T_c))
+    psi_mark = [0, 0.5 * (res3[1] + res3[2]), 0.5 * (res3[1] + res4[1]), 0.5 * (res4[1] + res4[2])]
     T_mark = [T_mark] * 4
     ax.scatter(psi_mark, T_mark, color="black", s=5)
 
-    ax.text(psi_mark[0], -2.46, "(1)", horizontalalignment="center")
-    ax.text(psi_mark[1], -2.46, "(2)", horizontalalignment="center")
-    ax.text(psi_mark[2], -2.46, "(3)", horizontalalignment="center")
-    ax.text(psi_mark[3], -2.46, "(4)", horizontalalignment="center")
+    ax.text(psi_mark[0], -2.46, "(b)", horizontalalignment="center")
+    ax.text(psi_mark[1], -2.46, "(c)", horizontalalignment="center")
+    ax.text(psi_mark[2], -2.46, "(d)", horizontalalignment="center")
+    ax.text(psi_mark[3], -2.46, "(e)", horizontalalignment="center")
 
     # Put phase labels.
     T_mark = -2.65
-    res3 = hex_stripe(a*(T_mark - T_c))
-    res4 = hex_unif(a*(T_mark - T_c))
-    psi_mark = [0.5*(res3[1] + res3[2]), 0.5*(res3[1] + res4[1]), 0.5*(res4[1] + res4[2])]
+    res3 = hex_stripe(a * (T_mark-T_c))
+    res4 = hex_unif(a * (T_mark-T_c))
+    psi_mark = [0.5 * (res3[1] + res3[2]), 0.5 * (res3[1] + res4[1]), 0.5 * (res4[1] + res4[2])]
     for i, s in enumerate(["S + H", "H", "H + U"]):
         ax.text(psi_mark[i], T_mark, s, horizontalalignment="center")
     for i, s in enumerate(["IH + S", "IH", "U + IH"]):

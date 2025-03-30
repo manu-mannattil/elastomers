@@ -56,7 +56,7 @@ def F(x, adT):
     return adT + 3 * b * x**2 + Q
 
 def f_unif(x, adT):
-    return 0.5 * (adT + M) * x**2 + 0.25 * b * x**4
+    return 0.5 * (adT+M) * x**2 + 0.25 * b * x**4
 
 def f_hex(x, adT):
     A = 4 / (15*b) * (3*b*x + np.sqrt(9 * b**2 * x**2 - 15 * b * F(x, adT)))
