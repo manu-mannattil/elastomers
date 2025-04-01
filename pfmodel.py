@@ -50,8 +50,8 @@ class PhaseFieldModel:
         disorder: float
             Controls the randomness in the initial configuration.
         """
-        if d not in (2, 3):
-            raise ValueError(f"The dimension (d = {d}) must be 2 or 3.")
+        if d not in (1, 2, 3):
+            raise ValueError(f"The dimension (d = {d}) must be 1, 2, or 3.")
 
         # Choose a random initial condition.  Too much randomness can
         # result in overflows, whereas too little randomness will
@@ -64,19 +64,26 @@ class PhaseFieldModel:
         # Domain setup.
         x = np.linspace(-L, L, n)
         dx = x[1] - x[0]
-        mesh = np.meshgrid(*(x, ) * d)
 
         # Wavenumber arrays.  The wavenumbers need to be multiplied by
         # 2pi to get usual physics conventions.
         q = 2 * np.pi * np.fft.fftfreq(n, d=dx)
-        if d == 2:
+        if d == 1:
+            q2 = q**2
+        elif d == 2:
             q2 = q[:, None]**2 + q[None, :]**2
         else:
             q2 = q[:, None, None]**2 + q[None, :, None]**2 + q[None, None, :]**2
 
         # Coarse-graining kernel.
-        K = np.exp(-np.sum(np.asarray(mesh)**2, axis=0) / (4 * h**2))
-        K /= (4 * np.pi * h**2)**(d / 2) # normalization
+        if d == 1:
+            K = np.exp(-x**2 / (4 * h**2))
+        else:
+            mesh = np.meshgrid(*(x, ) * d)
+            K = np.exp(-np.sum(np.asarray(mesh)**2, axis=0) / (4 * h**2))
+
+        # Normalize the kernel.
+        K /= (4 * np.pi * h**2)**(d / 2)
 
         # DFTs assume that the "origin" of the kernel are at the "ends".
         # But the kernel we've defined above has an origin at the center.
