@@ -2,6 +2,8 @@
 
 import numpy as np
 
+phantom = True
+
 # Fundamental constants.
 kB = 1.380649e-23 # Boltzmann constant (J/K)
 lSiO = 1.64e-10 # Si-O bond length (m)
@@ -27,10 +29,17 @@ C_inf = 6.8 # characteristic ratio of PDMS (assumed) (dimensionless)
 kappa = kBT / ell # Interfacial parameter (J/m)
 
 # Model parameters.
-n = 35 # scale factor (for the mesh size)
+# scale factor (for the mesh size)
+if phantom:
+    n = 80
+else:
+    n = 35
 
 # Estimated parameters.
-B = rho * ell**2 * C_inf * kBT / m_r
+if phantom:
+    B = 0.5 * rho * ell**2 * C_inf * kBT / m_r
+else:
+    B = rho * ell**2 * C_inf * kBT / m_r
 
 # Guessed parameters.
 phi_c = 0.2 # critical volume fraction
@@ -47,7 +56,10 @@ def longitudinal_modulus(Y):
 # volume fraction phi_c.
 def mesh_size(Y):
     Y = Y * 1000
-    return np.sqrt(3 * B / Y) * phi_c**(-1 / 3)
+    if phantom:
+        return np.sqrt(3 * B / Y)
+    else:
+        return np.sqrt(3 * B / Y) * phi_c**(-1 / 3)
 
 # Coarse-graining length scale (in m) as a function of the Young's
 # modulus Y of the dry PDMS in kPa (= 1000 J/m^3) and the swollen
@@ -76,7 +88,24 @@ def domain_size(Y):
 
 def num_monomers(Y):
     G = Y * 1000 / 3 # Young's modulus to shear modulus in J/m^3
-    return rho * kBT / (G*m_r)
+    if phantom:
+        return rho * kBT / (2*G*m_r)
+    else:
+        return rho * kBT / (G*m_r)
+
+def domain_size_eq(Y):
+    Y = Y * 1000
+    l = (2*np.pi) ** 2
+    l *= 3*B*n**2
+    l /= Y
+    if phantom:
+        l /= np.log(B*n**2/kappa*phi_c**(-5/3))
+    else:
+        l /= np.log(B*n**2/kappa*phi_c**(-7/3))
+        l *= phi_c**(-2/3)
+
+    l = np.sqrt(l)
+    return l
 
 def print_params(Y):
     print("---------------------")
@@ -89,9 +118,10 @@ def print_params(Y):
     print(f"  Mass of PDMS repeat unit = {m_r:.3} kg")
     print(f"  Flory ratio for PDMS = {C_inf:.3}")
     print(f"  Longitudinal modulus/M = {longitudinal_modulus(Y):.3}")
-    print(f"  Num repeat units = {num_monomers(10):.3}")
+    print(f"  Num repeat units = {num_monomers(Y):.3}")
     print(f"  Mesh size = {mesh_size(Y)/1e-9:.3} nm")
     print(f"  Domain size = {domain_size(Y)/1e-6:.3} um")
+    print(f"  Domain size (eq) = {domain_size_eq(Y)/1e-6:.3} um")
     print("---------------------")
 
 def parameters(Y, dim=False, length_scale=1e-6, energy_scale=1e-15, kwargs=False):
