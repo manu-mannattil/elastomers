@@ -11,16 +11,27 @@ b = 2 # kPa
 T_c = 70 # in Celsius
 phi_c = 0.2
 
-# Other parameters.
-B = 0.024 # kPa um^2
+# Other parameters (affine model)
+# B = 0.024 # kPa um^2
+# n = 35 # number of cross-links we coarse-grain over.
+
+# Other parameters (phantom model)
+B = 0.012 # kPa um^2
+n = 80 # number of cross-links we coarse-grain over.
+
+# Interface parameter.
 kappa = 0.013 # kPa um^2
-n = 35 # number of cross-links we coarse-grain over.
 
 def domain_size(Y):
     """Domain size (in μm) as a function of Y (in kPa)."""
-    # Eq. (13), step by step.
-    l = 3 * B * n**2 * phi_c**(-2 / 3)
-    l /= Y * np.log(B * n**2 / kappa * phi_c**(-7 / 3))
+    # Eq. (13), step by step (affine).
+    # l = 3 * B * n**2 * phi_c**(-2 / 3)
+    # l /= Y * np.log(B * n**2 / kappa * phi_c**(-7 / 3))
+
+    # Eq. (13), step by step (phantom)
+    l = 3 * B * n**2
+    l /= Y * np.log(B * n**2 / kappa * phi_c**(-5 / 3))
+
     l = 2*np.pi*np.sqrt(l)
     return l
 
