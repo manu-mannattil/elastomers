@@ -1,4 +1,4 @@
-# Theory of Microphase Separation in Elastomers
+# Microphase Separation in Elastomers
 
 [![arXiv](https://shields.io/badge/arXiv-2412.05910-b31b1b)](https://arxiv.org/abs/2412.05910)
 

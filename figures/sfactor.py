@@ -24,7 +24,7 @@ with plt.rc_context(rc):
     T_c = 70
     phi_c = 0.2
     kappa, h, M, zeta = parameters(Y)
-    print(M, h)
+    print(f"M = {M}, h = {h}")
 
     # Parameters in the Landau energy (estimated).
     a = 2.5e-2 # kPa/K
@@ -57,66 +57,22 @@ with plt.rc_context(rc):
     ax.set_ylabel(r"$\left. S(\bm{q}) \middle/ S(0) \right.$")
     ax.set_xlabel(r"$q$ ($\textsf{\textmu m}^{-1})$")
     ax.yaxis.set_major_formatter(ScalarFormatter(useMathText=True))
-    ax.ticklabel_format(style="sci", axis="y", scilimits=(0,2))  
+    ax.ticklabel_format(style="sci", axis="y", scilimits=(0,2))
 
-    ax.annotate("cooling", 
-                xy=(0.25, 0.75),
-                xytext=(0.25, 0.25),
-                ha="center", va="bottom",
-                color="#999999",
-                arrowprops=dict(arrowstyle="->", color="#999999", linewidth=0.75),
-                xycoords=ax.transAxes)
+    ax.arrow(
+        x=0.25, y=0.25, dx=0, dy=0.40, transform=ax.transAxes,
+        head_width=0.015, head_length=0.06, length_includes_head=True,
+        lw=0.5,
+        color="#999999",
+    )
 
-    # # Theoretical (small q) S(q) -------------------------------------------
-
-    # ax = axes[1]
-
-    # zeta = 2
-    # h = 1
-    # tau_m = (zeta - 1)/(zeta*h**2)
-    # tau = tau_m + 0.1
-
-    # q_max = np.sqrt((zeta - 1)/(zeta*h**2))
-
-    # q = np.linspace(0, 2*q_max, 100)
-    # S_q = tau/(tau - 2*(zeta - 1)*q**2 + zeta*h**2*q**4)
-
-    # ax.plot(q, S_q, "C0")
-
-    # ax.set_xlim(0, 2*q_max)
-    # ax.set_ylim(0, 7)
-    # ax.set_ylabel(r"$\left. S(\bm{q}) \middle/ S(0) \right.$")
-    # ax.set_xlabel(r"$q$")
-
-    # ax.text(*labelpos,
-    #         r"\textbf{(b)}",
-    #         transform=ax.transAxes,
-    #         backgroundcolor="w",
-    #         bbox=dict(facecolor="w", edgecolor="w", pad=1))
-
-    # # Theoretical (small q) C(r) -------------------------------------------
-
-    # ax = axes[2]
-
-    # gamma = (zeta - 1)/np.sqrt(zeta * tau * h **2)
-    # l = (zeta*h**2/tau) ** 0.25 * np.sqrt(2/(1 - gamma))
-    # d = (zeta*h**2/tau) ** 0.25 * np.sqrt(2/(1 + gamma))
-    # x = np.linspace(0, 3*d, 100) # get 3 oscillations
-
-    # # NumPy defines sinc(x) = sin(pi*x)/(pi*x).
-    # C_x = np.exp(-x/l) * np.sinc(2*x/d)
-    # ax.plot(x, C_x, "C3")
-
-    # ax.set_xlim(0, 3*d)
-    # ax.set_ylim(-0.25, 1)
-    # ax.set_xlabel(r"$x$")
-    # ax.set_ylabel(r"$\left. C(\bm{x}) \middle/ C(0) \right.$")
-
-    # ax.text(*labelpos,
-    #         r"\textbf{(c)}",
-    #         transform=ax.transAxes,
-    #         backgroundcolor="w",
-    #         bbox=dict(facecolor="w", edgecolor="w", pad=1))
+    ax.text(0.22, 0.42,
+            r"cooling",
+            transform=ax.transAxes,
+            va="center",
+            ha="center",
+            rotation=90,
+            color="#999999")
 
     plt.tight_layout()
     plt.savefig(

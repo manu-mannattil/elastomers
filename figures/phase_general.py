@@ -199,9 +199,9 @@ with plt.rc_context(rc):
     res3 = hex_stripe(a * (T_mark-T_c))
     res4 = hex_unif(a * (T_mark-T_c))
     psi_mark = [0.5 * (res3[1] + res3[2]), 0.5 * (res3[1] + res4[1]), 0.5 * (res4[1] + res4[2])]
-    for i, s in enumerate(["S + H", "H", "H + U"]):
+    for i, s in enumerate(["S + D", "D", "D + U"]):
         ax.text(psi_mark[i], T_mark, s, horizontalalignment="center")
-    for i, s in enumerate(["IH + S", "IH", "U + IH"]):
+    for i, s in enumerate(["ID + S", "ID", "U + ID"]):
         ax.text(-psi_mark[i], T_mark, s, horizontalalignment="center")
     ax.text(0, T_mark, "S", horizontalalignment="center")
     ax.text(0.5, -2.2, "U", horizontalalignment="center")
@@ -216,6 +216,10 @@ with plt.rc_context(rc):
     ax.set_ylim(-2.75, -1.925)
     ax.set_xlabel(r"$\psi_0$")
     ax.set_ylabel(r"$T$")
+
+    # Linear stability curves for hexagons and stripes.
+    # ax.plot(np.sqrt(-15 * (adT+Q) / (36*b)), T, "r--") # hexagons
+    # ax.plot(np.sqrt(-1 * (adT+Q) / (3*b)), T, "b--") # stripes
 
     plt.tight_layout()
     plt.savefig(

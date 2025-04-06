@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import numpy as np
@@ -103,7 +102,35 @@ def cubeplot3d(ax,
 
     return ax
 
-
 def rescale(a, interval=(-1, 1)):
     """Rescale the values of the given array into a desired interval."""
     return (interval[0] + (a - np.min(a)) * (interval[1] - interval[0]) / (np.max(a) - np.min(a)))
+
+def gprange(start, end, num=100):
+    """Return a geometric progression between start and end.
+
+    Returns a geometric progression between start and end (inclusive).
+
+    Parameters
+    ----------
+    start : float
+        Starting point of the progression.
+    end : float
+        Ending point of the progression.
+    num : int, optional (default = 100)
+        Number of points between start and end (inclusive).
+
+    Returns
+    -------
+    gp : array
+        Required geometric progression.
+    """
+    if end / start > 0:
+        ratio = (end / start)**(1.0 / (num-1))
+    elif end / start < 0 and num % 2 == 0:
+        ratio = -abs(end / start)**(1.0 / (num-1))
+    else:
+        raise ValueError('If start and end have different signs, '
+                         'a real ratio is possible iff num is even.')
+
+    return start * ratio**np.arange(num)
