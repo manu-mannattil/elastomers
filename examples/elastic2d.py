@@ -8,11 +8,12 @@ from params import parameters
 from pfmodel import PhaseFieldModel
 from utils import *
 
+Y = 800
+kwargs = parameters(Y, kwargs=True)
+
 L = kwargs["L"]
 n = 256
 
-Y = 800
-kwargs = parameters(Y, kwargs=True)
 phi_0 = 0.5
 T = 20
 pfm = PhaseFieldModel(T=T, phi_0=phi_0, n=n, **kwargs)
