@@ -31,7 +31,7 @@ with plt.rc_context(rc):
     b = 2 # kPa
 
     # Mean order parameter and temperature.
-    psi_0 = 0.45 - phi_c # one of the experimental phi_0's
+    psi_0 = 0.52049452 - phi_c # phi_0 at T_swell = 60 and Y = 800 kPa.
     T_m = np.round(T_c - (3*b*psi_0**2 + M*(1 + np.log(zeta))/zeta)/a)
 
     q_max = np.sqrt(np.log(zeta))/h
@@ -39,11 +39,12 @@ with plt.rc_context(rc):
 
     num_lines = 7
     alpha_lines = gprange(1.0, 0.1, num_lines)
-    dT_list = np.linspace(2, 10, num_lines)
+    dT_list = np.arange(2, 2 + num_lines)
     print(f"S(q) exact: T_max = {dT_list[-1] + T_m}")
     print(f"S(q) exact: T_min = {dT_list[0] + T_m}")
-    for i, dT in enumerate(np.linspace(2, 10, num_lines)):
-        T = T_m + dT # slightly above T_m
+    for i in range(num_lines):
+        T = T_m + dT_list[i]
+        print(T)
         tau = 2/kappa*(a*(T - T_c) + 3*b*psi_0**2 + M)
 
         S_q = a*(T - T_c) + 3*b*psi_0**2 + kappa*q**2 + M * np.exp(-h**2*q**2)

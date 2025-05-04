@@ -7,15 +7,17 @@ from params import parameters
 
 Y = 800
 kwargs = parameters(Y, kwargs=True)
-phi_0 = 0.2
 T = 20
 
 L = kwargs["L"]
 n = 256
 
-pfm = PhaseFieldModel(T=T, phi_0=phi_0, n=n, d=3, **kwargs)
+phi_0 = 0.2 # stripes
+phi_0 = 0.446 # hexagons
 
-for i in range(5000):
+pfm = PhaseFieldModel(T=T, phi_0=phi_0, n=n, d=3, disorder=0.001, **kwargs)
+
+for i in range(1000):
     print(i)
     pfm.evolve()
 
