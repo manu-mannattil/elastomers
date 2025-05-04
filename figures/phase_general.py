@@ -214,7 +214,7 @@ with plt.rc_context(rc):
 
     ax.set_xlim(-0.7, 0.7)
     ax.set_ylim(-2.75, -1.925)
-    ax.set_xlabel(r"$\psi_0$")
+    ax.set_xlabel(r"$\phi_0$")
     ax.set_ylabel(r"$T$")
 
     # Linear stability curves for hexagons and stripes.

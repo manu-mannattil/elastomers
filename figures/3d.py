@@ -16,7 +16,7 @@ rc = {
 
 with plt.rc_context(rc):
     Y, phi = 800, 0.2
-    data = f"../tests/data//Y_{Y}_phi_{phi}.npy"
+    data = f"../examples/data/Y_{Y}_phi_{phi}.npy"
     psi = np.load(data)
 
     fig, ax = plt.subplots(subplot_kw={'projection': '3d', 'proj_type': 'ortho'})

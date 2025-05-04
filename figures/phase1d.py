@@ -184,10 +184,10 @@ with plt.rc_context(rc):
 
     ax.set_xlim(-0.55, 0.55)
     ax.set_ylim(-2.5, -1.95)
-    ax.set_xlabel(r"$\psi_0$")
+    ax.set_xlabel(r"$\phi_0$")
     ax.set_ylabel(r"$T$", rotation=None, va="center")
 
-    ax.set_xlabel(r"$\psi_0$")
+    ax.set_xlabel(r"$\phi_0$")
     ax.set_ylabel(r"$T$")
 
     ax.scatter(0, -2.45, color="black", s=8, zorder=100)

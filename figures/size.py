@@ -16,8 +16,8 @@ phi_c = 0.2
 # n = 35 # number of cross-links we coarse-grain over.
 
 # Other parameters (phantom model)
-B = 0.012 # kPa um^2
-n = 80 # number of cross-links we coarse-grain over.
+B = 0.006 # kPa um^2
+n = 110 # number of cross-links we coarse-grain over.
 
 # Interface parameter.
 kappa = 0.013 # kPa um^2

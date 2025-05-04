@@ -32,7 +32,7 @@ with plt.rc_context(rc):
     # m, c = np.linalg.lstsq(A, y[:-1])[0]
     # ax.plot(x, m*x + c, "k--", zorder=-1000)
 
-    ax.set_xlabel(r"cross-linker concentration $\propto \nu$ (mol m$^{-3}$)")
+    ax.set_xlabel(r"crosslinker concentration (mol m$^{-3}$) $\propto \nu$")
     ax.set_ylabel(r"$Y$ (kPa)")
 
     ax.set_xlim(4.5, 13.5)
