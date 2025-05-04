@@ -9,6 +9,7 @@ class PhaseFieldModel:
                  T_c=70,
                  phi_c=0.2,
                  phi_0=0.5,
+                 psi_0=None,
                  a=0.025,
                  b=2,
                  kappa=0.013,
@@ -29,6 +30,8 @@ class PhaseFieldModel:
             Critical temperature (in Celsius).
         phi_c : float
             Critical polymer volume fraction.
+        psi_0 : float
+            Initial psi.
         a : float
             Landau parameter a (in kPa).
         b : float
@@ -53,11 +56,15 @@ class PhaseFieldModel:
         if d not in (1, 2, 3):
             raise ValueError(f"The dimension (d = {d}) must be 1, 2, or 3.")
 
-        # Choose a random initial condition.  Too much randomness can
-        # result in overflows, whereas too little randomness will
-        # sometimes prevent the system from reaching its true energy
-        # minimum.
-        self.psi = np.random.normal(size=(n, ) * d, scale=disorder)
+        # Choose a random initial condition if none is given.  Too much
+        # randomness can result in overflows, whereas too little
+        # randomness will sometimes prevent the system from reaching its
+        # true energy minimum.
+        if psi_0 is None:
+            self.psi = np.random.normal(size=(n, ) * d, scale=disorder)
+        else:
+            self.psi = psi_0
+
         # Make sure that the mean value of the order parameter is exact.
         self.psi += phi_0 - phi_c - self.psi.mean()
 
