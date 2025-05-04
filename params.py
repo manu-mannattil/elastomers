@@ -31,13 +31,13 @@ kappa = kBT / ell # Interfacial parameter (J/m)
 # Model parameters.
 # scale factor (for the mesh size)
 if phantom:
-    n = 80
+    n = 110
 else:
     n = 35
 
 # Estimated parameters.
 if phantom:
-    B = 0.5 * rho * ell**2 * C_inf * kBT / m_r
+    B = 0.25 * rho * ell**2 * C_inf * kBT / m_r
 else:
     B = rho * ell**2 * C_inf * kBT / m_r
 
