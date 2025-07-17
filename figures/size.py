@@ -110,7 +110,7 @@ with plt.rc_context(rc):
     ax.set_box_aspect(1)
     ax.text(*labelpos, r"\textbf{(b)}", transform=ax.transAxes)
     ax.set_xlabel("$Y$ (kPa)")
-    ax.set_ylabel(r"$T_\mathrm{m}$ (${}^{\circ}\mathrm{C}$)", labelpad=8)
+    ax.set_ylabel(r"$T_\mathrm{micro}$ (${}^{\circ}\mathrm{C}$)", labelpad=8)
     ax.set_xticks([0, 250, 500, 750])
     ax.set_xticks([0, 200, 400, 600, 800])
     ax.set_xlim(-20, 820)
