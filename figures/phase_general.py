@@ -210,7 +210,7 @@ with plt.rc_context(rc):
     # Label critical point.
     ax.plot([-3, 3], [-2, -2], "--", color="#aaaaaa", zorder=-100)
     ax.scatter(0, -2, color="black", s=5, zorder=100)
-    ax.text(0, -1.975, r"$T_\mathrm{c}'$", horizontalalignment="center")
+    ax.text(0, -1.975, r"$T_{*}'$", horizontalalignment="center")
 
     ax.set_xlim(-0.7, 0.7)
     ax.set_ylim(-2.75, -1.925)

@@ -1,8 +1,7 @@
 # Microphase Separation in Elastomers
 
-[![arXiv](https://shields.io/badge/arXiv-2412.05910-b31b1b)](https://arxiv.org/abs/2412.05910)
-
-<!-- [![DOI](https://shields.io/badge/DOI-10.1103/PhysRevE.109.035001-946037)](https://doi.org/10.1103/PhysRevE.109.035001) -->
+[![arXiv](https://img.shields.io/badge/arXiv-2412.05910-d62728)](https://arxiv.org/abs/2412.05910)
+[![DOI](https://img.shields.io/badge/DOI-10.1103/5q7m--3fpn-1f77b4)](https://doi.org/10.1103/5q7m-3fpn)
 
 ## Usage
 

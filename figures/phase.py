@@ -195,7 +195,7 @@ with plt.rc_context(rc):
     # ax.scatter([0.42], [20], s=15, facecolor="none", edgecolor="k", linewidth=0.75, zorder=100)
 
     ax.scatter([0.2], [T_c - Q/a], s=15, facecolor="k", zorder=200)
-    ax.text(0.2, T_c - Q/a + 3, r"$T_\mathrm{c}'$", horizontalalignment="center")
+    ax.text(0.2, T_c - Q/a + 3, r"$T_{*}'$", horizontalalignment="center")
 
     ax.text(0.2, 23, "b", horizontalalignment="center")
     ax.scatter([0.2], [20], s=15, facecolor="k")

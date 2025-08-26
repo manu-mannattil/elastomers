@@ -91,12 +91,12 @@ with plt.rc_context(rc):
     Y_th = np.linspace(8, 1000, 100)
     ax.plot(Y_th, domain_size(Y_th), "--", color="#999999")
 
-    ax.plot(Y_th[3:30], 1.45 * domain_size(Y_th[3:30]), ":", color="#666666", linewidth=0.5)
+    ax.plot(Y_th[3:30], 1.45 * domain_size(Y_th[3:30]), ":", color="black", linewidth=0.5)
     ax.text(0.45,
             0.55,
             r"$\sim Y^{\small-1/2}$",
             transform=ax.transAxes,
-            color="#666666",
+            color="black",
             size=7,
             rotation=-45)
 
